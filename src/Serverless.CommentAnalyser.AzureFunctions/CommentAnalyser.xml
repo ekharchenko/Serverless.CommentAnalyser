@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Serverless.CommentAnalyser.AzureFunctions</name>
+    </assembly>
+    <members>
+        <member name="M:Serverless.CommentAnalyser.AzureFunctions.Endpoints.Frontend.GetComment(System.Net.Http.HttpRequestMessage,System.Int32)">
+            <summary>
+            The method gets a comment by comment id
+            </summary>
+            <param name="id"> comment id (integer type)</param>
+            <response code="200">Returns comment in json</response>
+            <response code="400">comment id is not a valid integer</response>
+            <response code="404">A comment does not exist with the current id</response>
+            <response code="500">Server has an internal error</response>
+        </member>
+        <member name="M:Serverless.CommentAnalyser.AzureFunctions.Endpoints.Frontend.AddComment(System.String,Microsoft.Azure.WebJobs.IAsyncCollector{System.String})">
+            <summary>
+            The method adds a comment to a pool for comment analysing and stores it to database 
+            </summary>
+            <param name="content"> Plain text</param>
+            <response code="202">Returns  a job status url if the service accepts the comment for processing</response>
+            <response code="400">Comment is empty or has only whitespaces</response>
+            <response code="500">Server has an internal error</response>
+        </member>
+        <member name="M:Serverless.CommentAnalyser.AzureFunctions.Endpoints.Frontend.GetJob(System.Net.Http.HttpRequestMessage,System.Guid)">
+            <summary>
+            The method gets a job status by job id 
+            </summary>
+            <param name="id"> job id </param>
+            <response code="201">Returns a link to a comment</response>
+            <response code="202">A job is not finished</response>
+            <response code="400">Job id is not a valid guid</response>
+            <response code="404">A job does not exist with the current id</response>
+            <response code="500">Server has an internal error</response>
+        </member>
+    </members>
+</doc>
